@@ -20,3 +20,6 @@ Lettore.in.leggiBoolean (); // returns false if what you typed is not a boolean.
 Lettore.in.leggiLine (); // read a line of text.
 eof (); // check on order flow data and returns a boolean.
 eoln (); // check if you got to the end of the line.
+
+All in the file java is written in Italian (sorry guys i'll translate it).
+names of functions will not change because some people could confuse this name functions with java-standard library functions
