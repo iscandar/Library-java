@@ -1,14 +1,14 @@
 package butler;
 import java.io.*;
-/*Progetto per la lettura semplificata di dati per i vari tipi
- * primitivi di java da tastiera.
- * versione 1.2;
- * autore: Alejandro Emmanuel Ontivero
- * Ingegneria Informatica(Sistemi Informatici)La Sapienza 01/10/2015
- */
+/* The Project for simplified reading of data for the various types
+* Primitive Java keyboard .
+* Version 1.2 ;
+* Author : Alejandro Emmanuel ONTIVERO
+* Computer Engineering ( Computer Systems ) La Sapienza 2015
+*/
 public class Lettore extends BufferedReader{
     private char prossimo;
-        //costruttore costruttore statico affinche l'oggetto creato non possa essere riasegnato ma possa inseguito essere modificato
+        //static constructor Directory to the created object can not be reassigned chased but could be changed
     
     public static Lettore in=new Lettore();
 
@@ -24,7 +24,7 @@ public class Lettore extends BufferedReader{
 		super(in);
 		this.prossimo=(char)0;
 	}
-        //lettura singolo carattere
+        //reading Single Character
 	
     public char leggiChar(){
 	while (eoln()){ 
@@ -32,7 +32,7 @@ public class Lettore extends BufferedReader{
        }
         return get(); 
 	}
-	//lettura sequenza continua senza spazzi bianchi
+	//reading a continuous sequence without white spaces
     public String leggiString(){
 	StringBuffer s=new StringBuffer(); 
         char c;
@@ -45,7 +45,7 @@ public class Lettore extends BufferedReader{
         }
         return s.toString();
     } 
-            //lettura linea di testo senza terminazione
+            //reading continuous sequence
     public String leggiLine(){ 
         StringBuffer line=new StringBuffer(); 
         cancella();
@@ -58,7 +58,7 @@ public class Lettore extends BufferedReader{
         return line.toString();
     }
 	
-	//lettura di un long compreso di segno negativo
+	//reading signed long
     public long leggiLong(){ 
         String s=leggiString(); 
         long n; 
@@ -69,15 +69,15 @@ public class Lettore extends BufferedReader{
         } 
         return n;
     } 
-        //lettura di un intero
+        //reading signed int
     public int leggiInt(){ 
         return (int) leggiLong(); 
     } 
-        //lettura di un short
+       //reading signed short
     public short leggiShort(){ 
         return (short) leggiLong(); 
     } 
-        //lettura di un float
+      //reading signed float
     public float leggiFloat(){ 
         String string=leggiString(); 
         float n; 
@@ -88,7 +88,7 @@ public class Lettore extends BufferedReader{
         } 
         return n;
     } 
-        //lettura di un nuomero razionale
+     //reading signed double
     public double leggiDouble(){
     	String string=leggiString();
     	double n;
@@ -101,7 +101,7 @@ public class Lettore extends BufferedReader{
     		
     }
     
-        //lettura di un boolean
+        //reading boolean
     public boolean leggiBoolean(){
     	String string=leggiString();
     	boolean n;
@@ -113,18 +113,18 @@ public class Lettore extends BufferedReader{
     	return n;
     }
 
-        //verifico fine flusso dati
+        //check order flow data
     public boolean eof(){ 
-        char c=ultimoc(); 
-        return (c==(char)-1); 
+        int c=ultimoc(); 
+        return (c==-1); 
     } 
     
-        //end of line verifica se si è giunti alla fine della linea
+        //check end of line
     public boolean eoln(){ 
-        char c= ultimoc(); 
+        char c= (char)ultimoc(); 
         return (c=='\n') || (c=='\r') || eof(); 
     } 
-        //aggiungo alla stringa ottenuta un terminatore
+        //add end to the string
     private static String fine(String s){
 		if (s!=null){
 			int l=s.length();
@@ -134,51 +134,55 @@ public class Lettore extends BufferedReader{
 		}
 		return s;
 		}
-    	//verifico spazio bianco
+    	//check if char is white
     private static boolean isWhite(char c){ 
         return Character.isWhitespace(c); 
     } 
-        //restituisce un carattere letto da in
-    private char scan(){ 
-        char c; 
+        //return char readed
+    private int scan(){ 
+        int c; 
         try{ 
-            c=(char) in.read(); 
+            c= in.read(); 
         } catch (IOException e){ 
-            //do per certo di aver raggiunto la fine del flusso
-            c=(char) -1; 
+            c=-1; 
         } 
         return c; 
     }
-        //restituisce il carattere corrente senza eliminarlo
-    private char ultimoc(){ 
-        if (prossimo==0) 
-           prossimo=scan(); 
-        return prossimo; 
+        //return chart without delet it
+    private int ultimoc(){ 
+        int c=(int)prossimo;
+        if (prossimo==0) {
+            c=scan();
+            if (c!=-1){
+                prossimo=(char) c;
+            }
+        }
+        return c; 
     } 
-        //elimina carattere e lo restituisce
+        //delet and return char
     private char get(){ 
-        char c=ultimoc(); 
+        char c=(char)ultimoc(); 
         prossimo=0;  // lo elimino
         return c; 
     } 
     
-        //elimino caratteri di fine linea (problemi con differenti os)
+        //delete end of line(problems with some O.S)
     private void elimFine(){ 
-        char c=ultimoc(); 
+        char c=(char)ultimoc(); 
         if (c=='\r'){ 
             get(); 
-            c=ultimoc(); 
+            c=(char)ultimoc(); 
         } 
         if (c=='\n'){ 
             get(); 
         } 
     } 
-        //elimino spazi bianchi
+        //delete white space
     private void elimspazio(){ 
-        char c=ultimoc(); 
+        char c=(char)ultimoc(); 
         while (isWhite(c)){ 
             get(); 
-            c=ultimoc(); 
+            c=(char)ultimoc(); 
         } 
     } 
     private void cancella(){ 
