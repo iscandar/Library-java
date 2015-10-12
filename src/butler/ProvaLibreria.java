@@ -23,7 +23,7 @@ System.out.println( "system name: "+nomeProp);
         int d=0;
         System.out.print("enter int\n");
         d=Lettore.in.leggiInt();
-          System.out.print("int is= "+d+"\n");
+        System.out.print("int is= "+d+"\n");
         
         
     }

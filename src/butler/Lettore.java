@@ -6,26 +6,48 @@ import java.io.*;
 * Author : Alejandro Emmanuel ONTIVERO
 * Computer Engineering ( Computer Systems ) La Sapienza 2015
 */
+
+/**
+ *
+ * @author iscandar
+ */
+
 public class Lettore extends BufferedReader{
     private char prossimo;
-        //static constructor Directory to the created object can not be reassigned chased but could be changed
     
+    /**
+     *static constructor Directory to the created object can not be reassigned chased but could be changed
+     */
     public static Lettore in=new Lettore();
 
+    /**
+     *
+     */
     public Lettore(){
 		this(new InputStreamReader(System.in));
 	}
     
+    /**
+     *
+     * @param s
+     */
     public Lettore(String s){
 		this(new StringReader(fine(s)));
     }
 
+    /**
+     *
+     * @param in
+     */
     public Lettore(Reader in){
 		super(in);
 		this.prossimo=(char)0;
 	}
-        //reading Single Character
 	
+    /**
+     *
+     * @return reading Single Character
+     */
     public char leggiChar(){
 	while (eoln()){ 
           elimFine(); 
@@ -33,7 +55,12 @@ public class Lettore extends BufferedReader{
         return get(); 
 	}
 	//reading a continuous sequence without white spaces
-    public String leggiString(){
+
+    /**
+     *
+     * @return
+     */
+        public String leggiString(){
 	StringBuffer s=new StringBuffer(); 
         char c;
         cancella();
@@ -46,7 +73,12 @@ public class Lettore extends BufferedReader{
         return s.toString();
     } 
             //reading continuous sequence
-    public String leggiLine(){ 
+ 
+    /**
+     *
+     * @return
+     */
+        public String leggiLine(){ 
         StringBuffer line=new StringBuffer(); 
         cancella();
         char c; 
@@ -59,7 +91,12 @@ public class Lettore extends BufferedReader{
     }
 	
 	//reading signed long
-    public long leggiLong(){ 
+ 
+    /**
+     *
+     * @return
+     */
+        public long leggiLong(){ 
         String s=leggiString(); 
         long n; 
         try{ 
@@ -70,15 +107,30 @@ public class Lettore extends BufferedReader{
         return n;
     } 
         //reading signed int
-    public int leggiInt(){ 
+ 
+    /**
+     *
+     * @return
+     */
+        public int leggiInt(){ 
         return (int) leggiLong(); 
     } 
        //reading signed short
-    public short leggiShort(){ 
+ 
+    /**
+     *
+     * @return
+     */
+        public short leggiShort(){ 
         return (short) leggiLong(); 
     } 
       //reading signed float
-    public float leggiFloat(){ 
+ 
+    /**
+     *
+     * @return
+     */
+        public float leggiFloat(){ 
         String string=leggiString(); 
         float n; 
         try{ 
@@ -89,7 +141,12 @@ public class Lettore extends BufferedReader{
         return n;
     } 
      //reading signed double
-    public double leggiDouble(){
+
+    /**
+     *
+     * @return
+     */
+        public double leggiDouble(){
     	String string=leggiString();
     	double n;
     	try{
@@ -102,7 +159,12 @@ public class Lettore extends BufferedReader{
     }
     
         //reading boolean
-    public boolean leggiBoolean(){
+
+    /**
+     *
+     * @return
+     */
+        public boolean leggiBoolean(){
     	String string=leggiString();
     	boolean n;
     	try{
@@ -114,13 +176,23 @@ public class Lettore extends BufferedReader{
     }
 
         //check order flow data
-    public boolean eof(){ 
+ 
+    /**
+     *
+     * @return
+     */
+        public boolean eof(){ 
         int c=ultimoc(); 
         return (c==-1); 
     } 
     
         //check end of line
-    public boolean eoln(){ 
+ 
+    /**
+     *
+     * @return
+     */
+        public boolean eoln(){ 
         char c= (char)ultimoc(); 
         return (c=='\n') || (c=='\r') || eof(); 
     } 
